@@ -1,0 +1,110 @@
+server:
+  port: 8030
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: dev
+  application:
+    name: hap-user-service
+  sleuth:
+    integration:
+      enabled: false
+    scheduled:
+      enabled: false
+    sampler:
+      percentage: 1.0
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8100/eureka/}
+    registryFetchIntervalSeconds: 10
+management:
+  port: 8031
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: true
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
+    devops-deploy-service:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: 1500
+devops-deploy-service:
+  ribbon:
+    ReadTimeout: 1500
+    ConnectTimeout: 1500
+
+
+
+--- 
+
+
+server:
+  port: 8030
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: sit
+  application:
+    name: hap-user-service
+  sleuth:
+    integration:
+      enabled: false
+    scheduled:
+      enabled: false
+    sampler:
+      percentage: 1.0
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8200/eureka/}
+    registryFetchIntervalSeconds: 10
+management:
+  port: 8031
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: true
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
+    devops-deploy-service:
+          execution:
+            isolation:
+              thread:
+                timeoutInMilliseconds: 1500
+devops-deploy-service:
+  ribbon:
+    ReadTimeout: 1500
+    ConnectTimeout: 1500

@@ -1,0 +1,81 @@
+server:
+  port: 8020
+  contextPath: /oauth
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: dev
+  application:
+    name: hap-oauth-server
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8100/eureka/}
+    registryFetchIntervalSeconds: 10
+management:
+  port: 8021
+  security:
+    enabled: false
+
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+
+---
+
+
+server:
+  port: 8020
+  contextPath: /oauth
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: sit
+  application:
+    name: hap-oauth-server
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8200/eureka/}
+    registryFetchIntervalSeconds: 10
+management:
+  port: 8021
+  security:
+    enabled: false
+
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

@@ -1,0 +1,85 @@
+server:
+  port: 8100
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8100/eureka/}
+    registryFetchIntervalSeconds: 10
+    disable-delta: true
+  server:
+    evictionIntervalTimerInMs: 4000
+spring:
+  profiles: dev
+  datasource:
+      url: ${SPRING_DATASOURCE_URL:jdbc:mysql://192.168.11.227/hap_user_service?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+      username: hapcloud
+      password: handhand
+  application:
+    name: hap-register-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+management:
+  port: 8001
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: false
+logging:
+  level:
+    com.netflix.discovery.DiscoveryClient: warn
+    com.netflix.eureka.registry.AbstractInstanceRegistry: warn
+
+
+---
+
+
+server:
+  port: 8200
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 30
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8200/eureka/}
+    registryFetchIntervalSeconds: 10
+    disable-delta: true
+  server:
+    evictionIntervalTimerInMs: 4000
+spring:
+  profiles: sit
+  datasource:
+      url: ${SPRING_DATASOURCE_URL:jdbc:mysql://192.168.11.227/hap_user_service?useUnicode=true&characterEncoding=utf-8&useSSL=false}
+      username: hapcloud
+      password: handhand
+  application:
+    name: hap-register-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+management:
+  port: 8001
+  security:
+    enabled: false
+security:
+  basic:
+    enabled: false
+logging:
+  level:
+    com.netflix.discovery.DiscoveryClient: warn
+    com.netflix.eureka.registry.AbstractInstanceRegistry: warn    

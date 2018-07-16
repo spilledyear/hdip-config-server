@@ -1,0 +1,84 @@
+server:
+  port: 8379
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: dev
+  application:
+    name: hap-hdip-dispatch-service
+  redis:
+    host: localhost
+    port: 6379
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8100/eureka/}
+
+
+
+----
+
+
+
+
+server:
+  port: 8379
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: sit
+  application:
+    name: hap-hdip-dispatch-service
+  redis:
+    host: localhost
+    port: 6379
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://localhost:8200/eureka/}
+
+
+
+---
+
+
+
+server:
+  port: 8379
+mybatis:
+  mapperLocations: classpath*:/mapper/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+spring:
+  profiles: local
+  application:
+    name: hap-hdip-dispatch-service
+  redis:
+    host: 192.168.11.122
+    port: 6379
+  rabbitmq:
+    host: 192.168.11.122
+    port: 5672
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_DEFAULT_ZONE:http://192.168.11.122:8000/eureka/}   
+
+swagger:
+  oauthUrl: http://192.168.11.122:8080/oauth/oauth/authorize         
